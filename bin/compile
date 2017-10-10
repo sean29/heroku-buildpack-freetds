@@ -28,7 +28,12 @@ puts `cd #{CACHE_DIR}/#{ARCHIVE_NAME} && make install`
 puts "-----> Copying FreeTDS into /app/vendor/freetds"
 puts `cp -r #{BUILD_DIR}/vendor/freetds /app/vendor/freetds`
 
+puts "-----> Installing unixodbc and unixodbc-dev"
+puts `sudo apt-get install unixodbc unixodbc-dev`
+
+
 puts "-----> Writing FreeTDS configuration for subsequent buildpack"
+
 
 File.open("export", "a") do |file|
   file.write("export FREETDS_DIR=/app/vendor/freetds")
