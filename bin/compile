@@ -29,7 +29,9 @@ puts "-----> Copying FreeTDS into /app/vendor/freetds"
 puts `cp -r #{BUILD_DIR}/vendor/freetds /app/vendor/freetds`
 
 puts "-----> Installing unixodbc and unixodbc-dev"
-puts `apt-get install unixODBC unixODBC-devel`
+
+puts `curl http://www.unixodbc.org/unixODBC-2.3.4.tar.gz -o - | tar -xz -C #{CACHE_DIR} -f -`
+puts `cd #{CACHE_DIR}/unixODBC  && ./configure  && make  && make install`
 
 
 puts "-----> Writing FreeTDS configuration for subsequent buildpack"
